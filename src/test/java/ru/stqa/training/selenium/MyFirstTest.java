@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.openqa.selenium.support.ui.ExpectedConditions.titleIs;
 
 public class MyFirstTest {
@@ -20,6 +22,7 @@ public class MyFirstTest {
     public void start()
     {
         driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         wait = new WebDriverWait(driver, 10);
     }
 
@@ -30,6 +33,7 @@ public class MyFirstTest {
         driver.findElement(By.name("q")).sendKeys("webdriver");
         driver.findElement(By.name("q")).sendKeys(Keys.ENTER);
         wait.until(titleIs("webdriver - Поиск в Google"));
+        driver.findElement(By.partialLinkText("Что такое Selenium WebDriver?")).click();
     }
 
     @After
