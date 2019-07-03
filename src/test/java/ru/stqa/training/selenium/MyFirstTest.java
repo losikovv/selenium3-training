@@ -36,6 +36,15 @@ public class MyFirstTest {
         driver.findElement(By.partialLinkText("Что такое Selenium WebDriver?")).click();
     }
 
+    @Test
+    public void authAdmin()
+    {
+        driver.get("http://localhost/litecart/admin/login.php");
+        driver.findElement(By.name("username")).sendKeys("admin");
+        driver.findElement(By.name("password")).sendKeys("admin");
+        driver.findElement(By.name("login")).click();
+    }
+
     @After
     public void stop()
     {
