@@ -4,7 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverInfo;
+import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -22,8 +25,14 @@ public class TestBase {
             return;
         }
 
-        driver = new SafariDriver();
+        DesiredCapabilities caps = new DesiredCapabilities();
+        caps.setCapability(FirefoxDriver.MARIONETTE, false);
+
+        driver = new FirefoxDriver();
         tlDriver.set(driver);
+
+        System.out.println(((HasCapabilities) driver).getCapabilities());
+
         wait = new WebDriverWait(driver, 10);
 
         Runtime.getRuntime().addShutdownHook(
