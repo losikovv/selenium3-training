@@ -11,6 +11,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 public class TestBase {
 
     public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
@@ -25,13 +27,14 @@ public class TestBase {
             return;
         }
 
-        DesiredCapabilities caps = new DesiredCapabilities();
-        caps.setCapability(FirefoxDriver.MARIONETTE, false);
+        //DesiredCapabilities caps = new DesiredCapabilities();
+        //caps.setCapability(FirefoxDriver.MARIONETTE, false);
 
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         tlDriver.set(driver);
 
-        System.out.println(((HasCapabilities) driver).getCapabilities());
+        //System.out.println(((HasCapabilities) driver).getCapabilities());
 
         wait = new WebDriverWait(driver, 10);
 

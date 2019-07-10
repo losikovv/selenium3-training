@@ -17,7 +17,7 @@ dependencies {
 }
 
 test {
-    maxParallelForks = 10
+    //maxParallelForks = 10
 }
 
 tasks.withType(JavaCompile) {
