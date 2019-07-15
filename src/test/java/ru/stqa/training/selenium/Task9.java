@@ -13,19 +13,19 @@ public class Task9 extends TestBase {
     public void countriesOrder() {
         authAdmin();
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
-        checkElementsOrder(By.xpath("//tr//td[5]//a"));
+        checkElementsOrder(By.xpath("//td[5]//a"));
     }
 
     @Test
     public void countriesZonesOrder() {
         authAdmin();
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
-        int countriesSize = driver.findElements(By.xpath("//tr//td[5]//a")).size();
+        int countriesSize = driver.findElements(By.xpath("//td[5]//a")).size();
 
         for (int i = 0; i < countriesSize; i++) {
-            int zonesNumber = Integer.parseInt(driver.findElements(By.xpath("//tr//td[6]")).get(i).getText());
+            int zonesNumber = Integer.parseInt(driver.findElements(By.xpath("//td[6]")).get(i).getText());
             if (zonesNumber > 0) {
-                driver.findElements(By.xpath("//tr//td[5]//a")).get(i).click();
+                driver.findElements(By.xpath("//td[5]//a")).get(i).click();
                 checkElementsOrder(By.xpath("//td[3]/input[@type='hidden']"));
                 driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
             }
@@ -34,6 +34,8 @@ public class Task9 extends TestBase {
 
     @Test
     public void geoZonesOrder() {
+        authAdmin();
+        driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
 
     }
 
