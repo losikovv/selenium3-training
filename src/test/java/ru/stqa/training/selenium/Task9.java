@@ -17,7 +17,7 @@ public class Task9 extends TestBase {
         List<WebElement> countries = driver.findElements(By.xpath("//tr//td[5]//a"));
 
         for (int i = 0; i < countries.size() - 1; i++) {
-            Assert.assertTrue(countries.get(i).getText().compareTo(countries.get(i + 1).getText()) < 1);
+            Assert.assertTrue(countries.get(i).getText().compareToIgnoreCase(countries.get(i + 1).getText()) < 1);
             System.out.println(countries.get(i).getText());
         }
     }
