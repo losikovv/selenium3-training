@@ -10,16 +10,31 @@ import java.util.List;
 public class Task9 extends TestBase {
 
     @Test
-    public void countries() {
+    public void countriesOrder() {
         authAdmin();
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
+        checkElementsOrder(By.xpath("//tr//td[5]//a"));
+    }
 
-        List<WebElement> countries = driver.findElements(By.xpath("//tr//td[5]//a"));
+    @Test
+    public void countriesZonesOrder() {
+        authAdmin();
+        driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
+        int countriesSize = driver.findElements(By.xpath("//tr//td[5]//a")).size();
 
-        for (int i = 0; i < countries.size() - 1; i++) {
-            Assert.assertTrue(countries.get(i).getText().compareToIgnoreCase(countries.get(i + 1).getText()) < 1);
-            System.out.println(countries.get(i).getText());
+        for (int i = 0; i < countriesSize; i++) {
+            int zonesNumber = Integer.parseInt(driver.findElements(By.xpath("//tr//td[6]")).get(i).getText());
+            if (zonesNumber > 0) {
+                driver.findElements(By.xpath("//tr//td[5]//a")).get(i).click();
+                checkElementsOrder(By.xpath("//td[3]/input[@type='hidden']"));
+                driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
+            }
         }
+    }
+
+    @Test
+    public void geoZonesOrder() {
+
     }
 
     private void authAdmin() {
@@ -29,8 +44,11 @@ public class Task9 extends TestBase {
         driver.findElement(By.name("login")).click();
     }
 
-    @Test
-    public void geoZones() {
+    private void checkElementsOrder(By locator) {
+        List<WebElement> elements = driver.findElements(locator);
 
+        for (int i = 0; i < elements.size() - 1; i++) {
+            Assert.assertTrue(elements.get(i).getText().compareToIgnoreCase(elements.get(i + 1).getText()) < 1);
+        }
     }
 }
