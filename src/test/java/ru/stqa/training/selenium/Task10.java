@@ -19,9 +19,9 @@ public class Task10 extends TestBase {
         String campaignPriceMainText = campaignPriceMain.getText();
 
         isPriceSizeOk(regularPriceMain, campaignPriceMain);
-        isGrey(regularPriceMain);
+        Assert.assertTrue(grey(regularPriceMain));
         isCrossed(regularPriceMain);
-        isRed(campaignPriceMain);
+        Assert.assertTrue(red(campaignPriceMain));
         Assert.assertTrue(bold(campaignPriceMain));
 
         driver.findElement(By.xpath("//div[@id='box-campaigns']//li")).click();
@@ -36,13 +36,13 @@ public class Task10 extends TestBase {
         Assert.assertEquals(campaignPriceMainText, campaignPriceCardText);
 
         isPriceSizeOk(regularPriceCard, campaignPriceCard);
-        isGrey(regularPriceCard);
+        Assert.assertTrue(grey(regularPriceCard));
         isCrossed(regularPriceCard);
-        isRed(campaignPriceCard);
+        Assert.assertTrue(red(campaignPriceCard));
         Assert.assertTrue(bold(campaignPriceCard));
     }
 
-    private void isGrey(WebElement element) {
+    private boolean grey(WebElement element) {
         String[] rgb = element
                 .getCssValue("color")
                 .replaceAll("[rgba()]", "")
@@ -50,11 +50,10 @@ public class Task10 extends TestBase {
 
         System.out.println("\ncolor: " + Arrays.toString(rgb));
 
-        Assert.assertEquals(rgb[0], rgb[1]);
-        Assert.assertEquals(rgb[1], rgb[2]);
+        return rgb[0].equalsIgnoreCase(rgb[1]) && rgb[1].equalsIgnoreCase(rgb[2]);
     }
 
-    private void isRed(WebElement element) {
+    private boolean red(WebElement element) {
         String[] rgb = element
                 .getCssValue("color")
                 .replaceAll("[rgba()]", "")
@@ -62,9 +61,9 @@ public class Task10 extends TestBase {
 
         System.out.println("\ncolor: " + Arrays.toString(rgb));
 
-        Assert.assertNotEquals("0", rgb[0]);
-        Assert.assertEquals("0", rgb[1]);
-        Assert.assertEquals("0", rgb[2]);
+        return !rgb[0].equalsIgnoreCase("0") &&
+                rgb[1].equalsIgnoreCase("0") &&
+                rgb[2].equalsIgnoreCase("0");
     }
 
     private void isCrossed(WebElement element) {
