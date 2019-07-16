@@ -14,7 +14,9 @@ public class Task10 extends TestBase {
         driver.get("http://localhost/litecart/en/");
         String name = driver.findElement(By.xpath("//div[@id='box-campaigns']//div[@class='name']")).getText();
         WebElement regularPriceMain = driver.findElement(By.xpath("//div[@id='box-campaigns']//s[@class='regular-price']"));
+        String regularPriceMainText = regularPriceMain.getText();
         WebElement campaignPriceMain = driver.findElement(By.xpath("//div[@id='box-campaigns']//strong[@class='campaign-price']"));
+        String campaignPriceMainText = campaignPriceMain.getText();
 
         isGrey(regularPriceMain);
         isCrossed(regularPriceMain);
@@ -25,11 +27,13 @@ public class Task10 extends TestBase {
         driver.findElement(By.xpath("//div[@id='box-campaigns']//li")).click();
 
         WebElement regularPriceCard = driver.findElement(By.xpath("//s[@class='regular-price']"));
+        String regularPriceCardText = regularPriceCard.getText();
         WebElement campaignPriceCard = driver.findElement(By.xpath("//strong[@class='campaign-price']"));
+        String campaignPriceCardText = campaignPriceCard.getText();
 
         Assert.assertEquals(name, driver.findElement(By.xpath("//h1")).getText());
-        Assert.assertEquals(regularPriceMain.getText(), regularPriceCard.getText());
-        Assert.assertEquals(campaignPriceMain.getText(), campaignPriceCard.getText());
+        Assert.assertEquals(regularPriceMainText, regularPriceCardText);
+        Assert.assertEquals(campaignPriceMainText, campaignPriceCardText);
 
         isGrey(regularPriceCard);
         isCrossed(regularPriceCard);
