@@ -18,9 +18,9 @@ public class Task10 extends TestBase {
         WebElement campaignPriceMain = driver.findElement(By.xpath("//div[@id='box-campaigns']//strong[@class='campaign-price']"));
         String campaignPriceMainText = campaignPriceMain.getText();
 
+        isPriceSizeOk(regularPriceMain, campaignPriceMain);
         isGrey(regularPriceMain);
         isCrossed(regularPriceMain);
-
         isRed(campaignPriceMain);
         Assert.assertTrue(bold(campaignPriceMain));
 
@@ -35,9 +35,9 @@ public class Task10 extends TestBase {
         Assert.assertEquals(regularPriceMainText, regularPriceCardText);
         Assert.assertEquals(campaignPriceMainText, campaignPriceCardText);
 
+        isPriceSizeOk(regularPriceCard, campaignPriceCard);
         isGrey(regularPriceCard);
         isCrossed(regularPriceCard);
-
         isRed(campaignPriceCard);
         Assert.assertTrue(bold(campaignPriceCard));
     }
@@ -82,5 +82,17 @@ public class Task10 extends TestBase {
         if (weight.equalsIgnoreCase("bold")) {
             return true;
         } else return Integer.parseInt(weight) > 699;
+    }
+
+    private void isPriceSizeOk(WebElement regular, WebElement campaign) {
+        float regularSize = Float.parseFloat(regular.getCssValue("font-size")
+                .replaceAll("[pxt]", ""));
+        float campaignSize = Float.parseFloat(campaign.getCssValue("font-size")
+                .replaceAll("[pxt]", ""));
+
+        System.out.println("\nregular font-size: " + regularSize);
+        System.out.println("campaign font-size: " + campaignSize);
+
+        Assert.assertTrue(regularSize < campaignSize);
     }
 }
