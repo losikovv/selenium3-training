@@ -62,8 +62,9 @@ public class Task10 extends TestBase {
 
         System.out.println("\ncolor: " + Arrays.toString(rgb));
 
-        Assert.assertTrue(Integer.parseInt(rgb[0]) > Integer.parseInt(rgb[1]));
-        Assert.assertEquals(rgb[1], rgb[2]);
+        Assert.assertNotEquals("0", rgb[0]);
+        Assert.assertEquals("0", rgb[1]);
+        Assert.assertEquals("0", rgb[2]);
     }
 
     private void isCrossed(WebElement element) {
