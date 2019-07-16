@@ -30,8 +30,8 @@ public class TestBase {
         //DesiredCapabilities caps = new DesiredCapabilities();
         //caps.setCapability(FirefoxDriver.MARIONETTE, false);
 
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+        driver = new SafariDriver();
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         tlDriver.set(driver);
 
         //System.out.println(((HasCapabilities) driver).getCapabilities());
