@@ -14,8 +14,6 @@ public class Task12 extends TestBase {
         System.out.println(before);
         driver.findElement(By.xpath("//a[contains(text(),'Add New Product')]")).click();
 
-        System.out.println(System.getProperty("user.dir"));
-
         driver.findElement(By.xpath("//input[@value='1'][@type='radio']")).click();
         driver.findElement(By.xpath("//input[@name='name[en]']")).sendKeys("Rubber Crocodile");
         driver.findElement(By.xpath("//input[@name='code']")).sendKeys("123");
@@ -24,7 +22,7 @@ public class Task12 extends TestBase {
         driver.findElement(By.xpath("//input[@value='1-3']")).click();
         driver.findElement(By.xpath("//input[@name='quantity']")).sendKeys("10");
         driver.findElement(By.xpath("//input[@name='new_images[]']"))
-                .sendKeys(System.getProperty("user.dir") + "/src/img/rubber_croc.jpg");
+                .sendKeys(System.getProperty("user.dir") + "/img/rubber_croc.jpg");
         driver.findElement(By.xpath("//input[@name='date_valid_from']")).sendKeys("17072019");
         driver.findElement(By.xpath("//input[@name='date_valid_to']")).sendKeys("17072020");
 
