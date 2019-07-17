@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 public class Task12 extends TestBase {
 
     @Test
-    public void item() {
+    public void addItem() {
         authAdmin();
         driver.findElement(By.xpath("//span[text()='Catalog']")).click();
         int before = driver.findElements(By.xpath("//tr[@class='row']")).size();
