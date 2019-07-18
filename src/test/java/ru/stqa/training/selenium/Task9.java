@@ -46,13 +46,6 @@ public class Task9 extends TestBase {
 
     }
 
-    private void authAdmin() {
-        driver.get("http://localhost/litecart/admin/login.php");
-        driver.findElement(By.name("username")).sendKeys("admin");
-        driver.findElement(By.name("password")).sendKeys("admin");
-        driver.findElement(By.name("login")).click();
-    }
-
     private void checkElementsOrder(By locator) {
         List<WebElement> elements = driver.findElements(locator);
 

@@ -49,11 +49,4 @@ public class Task12 extends TestBase {
         System.out.println(after);
         Assert.assertEquals(before + 1, after);
     }
-
-    private void authAdmin() {
-        driver.get("http://localhost/litecart/admin/login.php");
-        driver.findElement(By.name("username")).sendKeys("admin");
-        driver.findElement(By.name("password")).sendKeys("admin");
-        driver.findElement(By.name("login")).click();
-    }
 }
