@@ -8,6 +8,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.MalformedURLException;
@@ -16,9 +18,26 @@ import java.util.concurrent.TimeUnit;
 
 public class TestBase {
 
-    public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
-    public WebDriver driver;
+    public static ThreadLocal<EventFiringWebDriver> tlDriver = new ThreadLocal<>();
+    public EventFiringWebDriver driver;
     public WebDriverWait wait;
+
+    public static class MyListener extends AbstractWebDriverEventListener {
+        @Override
+        public void beforeFindBy(By by, WebElement element, WebDriver driver) {
+            System.out.println(by);
+        }
+
+        @Override
+        public void afterFindBy(By by, WebElement element, WebDriver driver) {
+            System.out.println(by +  " found");
+        }
+
+        @Override
+        public void onException(Throwable throwable, WebDriver driver) {
+            System.out.println(throwable);
+        }
+    }
 
     @Before
     public void start() throws MalformedURLException {
@@ -36,7 +55,8 @@ public class TestBase {
 //                DesiredCapabilities.chrome()
 //        );
 
-        driver = new ChromeDriver();
+        driver = new EventFiringWebDriver(new ChromeDriver());
+        driver.register(new MyListener());
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         tlDriver.set(driver);
 
