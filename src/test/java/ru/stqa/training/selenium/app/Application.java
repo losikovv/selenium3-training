@@ -31,7 +31,7 @@ public class Application {
     public void addItemsToCart(int number) {
         for (int i = 0; i < number; i++) {
             mainPage.open();
-            mainPage.clickFirstItemCard();
+            mainPage.firstItemCard.click();
 
             itemPage.selectItemSize("small");
             itemPage.addItemToCart();
@@ -39,7 +39,7 @@ public class Application {
     }
 
     public void clearCart() {
-        mainPage.clickCheckout();
+        mainPage.checkout.click();
 
         cartPage.removeAllItems();
     }
