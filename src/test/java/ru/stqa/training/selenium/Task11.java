@@ -3,10 +3,11 @@ package ru.stqa.training.selenium;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import ru.stqa.training.selenium.app.Application;
 
 import java.util.UUID;
 
-public class Task11 extends TestBase {
+public class Task11 extends Application {
 
     @Test
     public void reg() {

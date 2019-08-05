@@ -2,8 +2,9 @@ package ru.stqa.training.selenium;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import ru.stqa.training.selenium.app.Application;
 
-public class MySecondTest extends TestBase {
+public class MySecondTest extends Application {
 
     @Test
     public void firstTest()

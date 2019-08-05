@@ -2,10 +2,11 @@ package ru.stqa.training.selenium;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
+import ru.stqa.training.selenium.app.Application;
 
 import static org.junit.Assert.assertTrue;
 
-public class Task7 extends TestBase {
+public class Task7 extends Application {
 
     @Test
     public void task7() {

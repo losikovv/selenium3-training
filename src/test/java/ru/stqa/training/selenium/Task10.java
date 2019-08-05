@@ -4,10 +4,11 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import ru.stqa.training.selenium.app.Application;
 
 import java.util.Arrays;
 
-public class Task10 extends TestBase {
+public class Task10 extends Application {
 
     @Test
     public void itemCard() {

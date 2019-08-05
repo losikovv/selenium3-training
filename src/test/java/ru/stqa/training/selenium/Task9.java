@@ -4,21 +4,22 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import ru.stqa.training.selenium.app.Application;
 
 import java.util.List;
 
-public class Task9 extends TestBase {
+public class Task9 extends Application {
 
     @Test
     public void countriesOrder() {
-        authAdmin();
+        adminLoginPage.auth();
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
         checkElementsOrder(By.xpath("//td[5]//a"));
     }
 
     @Test
     public void countriesZonesOrder() {
-        authAdmin();
+        adminLoginPage.auth();
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
         int countriesSize = driver.findElements(By.xpath("//td[5]//a")).size();
 
@@ -34,7 +35,7 @@ public class Task9 extends TestBase {
 
     @Test
     public void geoZonesOrder() {
-        authAdmin();
+        adminLoginPage.auth();
         driver.get("http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones");
         int zonesSize = driver.findElements(By.xpath("//td[3]/a")).size();
 

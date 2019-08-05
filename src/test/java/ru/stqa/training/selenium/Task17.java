@@ -4,12 +4,13 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.logging.LogEntry;
+import ru.stqa.training.selenium.app.Application;
 
-public class Task17 extends TestBase {
+public class Task17 extends Application {
 
     @Test
     public void noBrowserLogs() {
-        authAdmin();
+        adminLoginPage.auth();
         String catalog = "http://localhost/litecart/admin/?app=catalog&doc=catalog&category_id=1";
         driver.get(catalog);
 

@@ -3,12 +3,13 @@ package ru.stqa.training.selenium;
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import ru.stqa.training.selenium.app.Application;
 
-public class Task12 extends TestBase {
+public class Task12 extends Application {
 
     @Test
     public void addItem() {
-        authAdmin();
+        adminLoginPage.auth();
         driver.findElement(By.xpath("//span[text()='Catalog']")).click();
         int before = driver.findElements(By.xpath("//tr[@class='row']")).size();
         System.out.println(before);

@@ -5,15 +5,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.stqa.training.selenium.app.Application;
 
 import java.util.List;
 import java.util.Set;
 
-public class Task14 extends TestBase {
+public class Task14 extends Application {
+
+    WebDriverWait wait = new WebDriverWait(driver, 10);
 
     @Test
     public void externalLinks() {
-        authAdmin();
+        adminLoginPage.auth();
         driver.get("http://localhost/litecart/admin/?app=countries&doc=countries");
         driver.findElement(By.xpath("//a[@class='button']")).click();
 
